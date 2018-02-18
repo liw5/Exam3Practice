@@ -5,8 +5,8 @@ This problem provides practice at:
   ***  FOR and WHILE loops.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Wenxing Li.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -45,7 +45,7 @@ def main():
 def run_test_practice_problem3():
     """ Tests the   practice_problem3  function. """
     ####################################################################
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  practice_problem3  function defined below.
     #   Include at least ** 2 ** ADDITIONAL tests beyond those we wrote.
     #
@@ -118,6 +118,13 @@ def run_test_practice_problem3():
                                    [888, 1000,
                                     - math.sqrt(2) - 0.00000000001],
                                    big_list))
+
+    st.SimpleTestCase(practice_problem3,
+                      [-2, 1, 1.3],
+                      [1])
+    st.SimpleTestCase(practice_problem3,
+                      [100, 2, 1.5],
+                      [139, 140])
 
     # ------------------------------------------------------------------
     # Run the 14 tests in the   tests   list constructed above.
@@ -208,7 +215,7 @@ def practice_problem3(start, n, threshold):
       :type threshold: float
     """
     ####################################################################
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Some tests are already written for you (above),
     #          but you are required to write ADDITIONAL tests (above).
     ####################################################################
@@ -216,6 +223,24 @@ def practice_problem3(start, n, threshold):
     #    DIFFICULTY:      5
     #    TIME ESTIMATE:   < 15 minutes.
     ####################################################################
+    list = []
+    num = start
+    count = 0
+    if n>0:
+        if threshold > math.sqrt(2):
+            for k in range(n):
+                list.append(start+k)
+
+
+        else:
+            while count < n:
+                if math.sin(num)+math.cos(num)>threshold:
+                    list.append(num)
+                    count += 1
+                num = num+1
+
+    return list
+
 
 
 # ----------------------------------------------------------------------
