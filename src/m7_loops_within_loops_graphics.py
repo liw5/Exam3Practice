@@ -5,8 +5,8 @@ This problem provides practice at:
   ***  LOOPS WITHIN LOOPS in 2D GRAPHICS problems.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Wenxing Li.
+"""  # Done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -29,12 +29,12 @@ Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
 ########################################################################
 
 import rosegraphics as rg
-
+import math
 
 def main():
     """ Calls the   TEST   functions in this module. """
     run_test_hourglass()
-    run_test_many_hourglasses()
+    #run_test_many_hourglasses()
 
 
 def run_test_hourglass():
@@ -89,7 +89,7 @@ def hourglass(window, n, point, radius, color):
     a color that rosegraphics understands.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #       We provided some tests for you (above).
     # ------------------------------------------------------------------
     ####################################################################
@@ -101,7 +101,35 @@ def hourglass(window, n, point, radius, color):
     #    DIFFICULTY:      8
     #    TIME ESTIMATE:  25 minutes (warning: this problem is challenging)
     # ------------------------------------------------------------------
+    ori_point = rg.Point(point.x,point.y)
+    draw_reversed(window, point, radius, color, n, ori_point)
+    point = rg.Point(ori_point.x,ori_point.y)
+    for k in range(n):
+        for j in range(k+1):
+            draw_circle(window,point,radius,color)
+            window.render()
+            point.x += 2*radius
+        point.x = ori_point.x-radius*(k+1)
+        point.y = ori_point.y-radius*(k+1)*math.sqrt(3)
 
+def draw_reversed(window,point,radius,color,n,ori_point):
+    for k in range(n):
+        for j in range(k+1):
+            draw_circle(window,point,radius,color)
+            window.render()
+            point.x += 2*radius
+        point.x = ori_point.x-radius*(k+1)
+        point.y = ori_point.y+radius*(k+1)*math.sqrt(3)
+
+
+
+def draw_circle(window,point,radius,color):
+    Circle = rg.Circle(point,radius)
+    Circle.fill_color = color
+    line = rg.Line(rg.Point(point.x-radius,point.y),rg.Point(point.x+radius,
+                                                             point.y))
+    Circle.attach_to(window)
+    line.attach_to(window)
 
 def run_test_many_hourglasses():
     """ Tests the    many_hourglasses    function. """
@@ -179,7 +207,8 @@ def many_hourglasses(window, square, m, colors):
     #                         a correct "hourglass" function above)
     #    TIME ESTIMATE:  20 minutes (warning: this problem is challenging)
     # ------------------------------------------------------------------
-
+    for k in range(m):
+        Rectangle = rg.Rectangle
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
